@@ -1,0 +1,20 @@
+<table class="table">
+  <tr>
+    <th scope="col">Gift certificate name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Duration</th>
+    <th scope="col">Price</th>
+  </tr>
+  <tr *ngFor="let giftCertificate of items">
+    <td>{{giftCertificate.name}}</td>
+    <td>{{giftCertificate.description}}</td>
+    <td>{{giftCertificate.duration}} days</td>
+    <td>{{giftCertificate.price}} $</td>
+  </tr>
+</table>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <button class="btn btn-primary" type="submit">Buy</button>
+</form>
+<br>
+<button class="btn btn-dark" (click) = clearCart()>Clear cart</button>
+

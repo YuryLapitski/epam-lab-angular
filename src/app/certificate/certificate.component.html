@@ -1,0 +1,24 @@
+<div>
+  <div>
+    <img class="img-responsive" [src]="imgUrl" alt="lorem">
+    <br>
+  </div>
+  <p>
+    <strong>ID: </strong>{{giftCertificate.id}} <br/>
+    <strong>Name: </strong>{{giftCertificate.name}} <br/>
+    <strong>Description: </strong>{{giftCertificate.description}} <br/>
+    <strong>Price: </strong>{{giftCertificate.price}} $ <br/>
+    <strong>Duration: </strong>{{giftCertificate.duration}} days<br/>
+    <strong>CreateDate: </strong>{{giftCertificate.createDate}} <br/>
+    <strong>LastUpdateDate: </strong>{{giftCertificate.lastUpdateDate}} <br/><br/>
+    <strong>Tags: </strong>
+  <div *ngFor="let tag of giftCertificate.tagList">
+    <a>#{{tag.name}}</a>
+  </div><br>
+  <a *ngIf="role == 'UNAUTHORIZED'; else authorized" routerLink="../../login">
+    Please log in to add to shopping cart
+  </a>
+  <ng-template #authorized>
+    <button class="accordion-button" (click)="addToCart(giftCertificate)">Add to shopping cart</button>
+  </ng-template>
+</div>
