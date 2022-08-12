@@ -1,4 +1,4 @@
-export class SignupInfo {
+export class SignUpInfo {
   firstName: string;
   lastName: string;
   login: string;

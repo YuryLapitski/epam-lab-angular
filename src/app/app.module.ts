@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignUpComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
@@ -21,7 +21,7 @@ import {CartService} from "./service/cart.service";
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
+    SignUpComponent,
     HomeComponent,
     UserComponent,
     AdminComponent,

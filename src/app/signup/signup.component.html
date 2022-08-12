@@ -1,1 +1,50 @@
-<p>signup works!</p>
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+
+<ng-template #signupForm>
+  <div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label>First Name
+        <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" #firstName="ngModel" required />
+        </label>
+        <div *ngIf="f.submitted && firstName.invalid">
+          <div *ngIf="firstName.errors">First name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Last Name
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel"
+               required />
+        </label>
+        <div *ngIf="f.submitted && lastName.invalid">
+          <div *ngIf="lastName.errors">Last name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Login
+        <input type="text" class="form-control" name="login" [(ngModel)]="form.login" #login="ngModel" required />
+        </label>
+        <div *ngIf="f.submitted && login.invalid">
+          <div *ngIf="login.errors">Login is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password
+        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+               required minlength="6" />
+        </label>
+        <div *ngIf="f.submitted && password.invalid">
+          <div *ngIf="password.errors">Password is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary">Register</button>
+        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+          Signup failed!<br/>{{errorMessage}}
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
