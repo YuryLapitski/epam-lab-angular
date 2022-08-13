@@ -5,11 +5,15 @@
     </div>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item active"><a class="nav-link" routerLink="home">Home</a></li>
-      <li class="nav-item active"><a class="nav-link" *ngIf="!info.token; else loggedIn" routerLink="login">Login</a></li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="!info.token; else loggedIn" routerLink="login">Login</a>
+      </li>
       <ng-template #loggedIn>
         <ul class="navbar-nav mr-auto" routerLinkActive="active">
           <li class="nav-item active"><a class="nav-link" href="#" (click)="logout()">Logout</a></li>
-          <li class="nav-item active"><span class="nav-link">You are logged in like {{info.username}}</span></li>
+          <li class="nav-item active">
+            <span class="nav-link">You are logged in like {{user.firstName}} {{user.lastName}}</span>
+          </li>
         </ul>
       </ng-template>
     </ul>

@@ -16,6 +16,7 @@ import {GiftCertificateService} from "./service/gift-certificate.service";
 import { CertificateComponent } from './certificate/certificate.component';
 import { CartComponent } from './cart/cart.component';
 import {CartService} from "./service/cart.service";
+import {UserService} from "./service/user.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {CartService} from "./service/cart.service";
   providers: [
     httpInterceptorProviders,
     GiftCertificateService,
-    CartService
+    CartService,
+    UserService
   ],
   bootstrap: [
     AppComponent
