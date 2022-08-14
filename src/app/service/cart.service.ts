@@ -7,20 +7,20 @@ import {GiftCertificate} from "../entity/giftCertificate";
 })
 export class CartService {
 
-  items: GiftCertificate[] = [];
+  giftCertificates: GiftCertificate[] = [];
 
   constructor(private http: HttpClient) { }
 
   addToCart(giftCertificate: GiftCertificate) {
-    this.items.push(giftCertificate);
+    this.giftCertificates.push(giftCertificate);
   }
 
-  getItems() {
-    return this.items;
+  getGiftCertificates(): GiftCertificate[] {
+    return this.giftCertificates;
   }
 
   clearCart() {
-    this.items = [];
-    return this.items;
+    this.giftCertificates = [];
+    return this.giftCertificates;
   }
 }
