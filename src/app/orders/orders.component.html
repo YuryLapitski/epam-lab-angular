@@ -1,0 +1,16 @@
+<div>
+  <table class="table">
+    <tr>
+      <th scope="col">Gift certificate name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Price</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+      <td>{{order.giftCertificate.name}}</td>
+      <td>{{order.giftCertificate.description}}</td>
+      <td>{{order.giftCertificate.duration}} days</td>
+      <td>{{order.giftCertificate.price}} $</td>
+    </tr>
+  </table>
+</div>

@@ -7,6 +7,7 @@ import {SignUpComponent} from "./signup/signup.component";
 import {UserComponent} from "./user/user.component";
 import {CertificateComponent} from "./certificate/certificate.component";
 import {CartComponent} from "./cart/cart.component";
+import {OrdersComponent} from "./orders/orders.component";
 
 const routes: Routes = [
   {
@@ -31,7 +32,12 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    component: CartComponent },
+    component: CartComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent
+  },
   {
     path: '',
     redirectTo: 'home',

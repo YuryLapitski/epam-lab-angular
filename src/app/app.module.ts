@@ -17,6 +17,7 @@ import { CertificateComponent } from './certificate/certificate.component';
 import { CartComponent } from './cart/cart.component';
 import {CartService} from "./service/cart.service";
 import {UserService} from "./service/user.service";
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {UserService} from "./service/user.service";
     AdminComponent,
     CertificateComponent,
     CartComponent,
+    OrdersComponent,
   ],
   imports: [
     AppRoutingModule,
