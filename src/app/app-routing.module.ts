@@ -8,6 +8,7 @@ import {UserComponent} from "./user/user.component";
 import {CertificateComponent} from "./certificate/certificate.component";
 import {CartComponent} from "./cart/cart.component";
 import {OrdersComponent} from "./orders/orders.component";
+import {CreateGiftCertificateComponent} from "./create-gift-certificate/create-gift-certificate.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'orders',
     component: OrdersComponent
+  },
+  {
+    path: 'create-gift-certificate',
+    component: CreateGiftCertificateComponent
   },
   {
     path: '',

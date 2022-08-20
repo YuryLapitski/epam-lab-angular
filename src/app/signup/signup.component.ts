@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.error.errorMessage;
         this.isSignUpFailed = true;
       }
     );

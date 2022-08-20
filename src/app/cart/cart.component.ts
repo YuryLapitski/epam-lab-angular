@@ -46,7 +46,7 @@ export class CartComponent implements OnInit {
             console.log(error);
             this.isCreated = false;
             this.isCreateFailed = true;
-            this.errorMessage = error.error.message;
+            this.errorMessage = error.error.errorMessage;
           })
     });
 
