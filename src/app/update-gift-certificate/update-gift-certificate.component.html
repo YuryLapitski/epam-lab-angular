@@ -1,0 +1,58 @@
+<div *ngIf="role === 'ADMIN'; else denied">
+  <div *ngIf="isUpdated; else updateGiftCertificateForm">
+    The gift certificate has been updated successfully.
+  </div>
+
+  <ng-template #updateGiftCertificateForm>
+    <div class="row col-sm-6" style="max-width:350px;">
+
+      <div class="form-group">
+        <ul>
+          <li *ngFor="let tag of tagList">{{tag.name}}
+            <button class="btn btn-secondary" (click) = deleteTag(tag.name)>Delete tag</button>
+          </li>
+        </ul>
+        <label>
+          <input type="text" name="tagList" [(ngModel)]="tagName"/>
+        </label>
+        <button class="btn btn-secondary" (click) = addTag()>Add tag</button>
+      </div>
+
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label>Gift certificate name
+            <input type="text" class="form-control" name="name" [(ngModel)]="form.name"/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Description
+            <input type="text" class="form-control" name="description" [(ngModel)]="form.description"/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Duration
+            <input type="number" class="form-control" name="duration" [(ngModel)]="form.duration"/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Price
+            <input type="number" class="form-control" name="price" [(ngModel)]="form.price"/>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary">Update</button>
+          <div *ngIf="f.submitted && isUpdateFailed" class="alert alert-warning">
+            Update failed!<br/>{{errorMessage}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #denied>
+  <h2 class="error">Access denied!</h2>
+</ng-template>
+
+

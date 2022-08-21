@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GiftCertificateService} from "../service/gift-certificate.service";
 import {GiftCertificate} from "../entity/giftCertificate";
 import {ActivatedRoute} from "@angular/router";
@@ -10,7 +10,7 @@ const DEFAULT_IMAGE_URL = 'assets/images/noImage.jpg';
 const EMPTY_STRING = ''
 
 @Component({
-  selector: 'home-certificate',
+  selector: 'app-certificate',
   templateUrl: './certificate.component.html',
   styleUrls: ['./certificate.component.css']
 })
@@ -20,6 +20,9 @@ export class CertificateComponent implements OnInit {
   giftCertificateId: string = EMPTY_STRING;
   imgUrl: string = DEFAULT_IMAGE_URL;
   role: string = EMPTY_STRING;
+  errorMessage: string;
+  isDelete: boolean;
+  isDeleteFailed: boolean;
 
   private routeSubscription!: Subscription;
 
@@ -39,5 +42,20 @@ export class CertificateComponent implements OnInit {
   addToCart(giftCertificate: GiftCertificate) {
     window.alert('Your product has been added to the cart!');
     this.cartService.addToCart(giftCertificate);
+  }
+
+  deleteGiftCertificate(giftCertificate: GiftCertificate) {
+    this.giftCertificateService.deleteGiftCertificate(giftCertificate.id.toString()).subscribe(
+      () => {
+        this.isDelete = true;
+        console.log('The gift certificate has been deleted');
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.errorMessage;
+        this.isDelete = false;
+        this.isDeleteFailed = true;
+      }
+    );
   }
 }

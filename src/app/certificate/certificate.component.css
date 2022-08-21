@@ -1,3 +1,19 @@
 .certificate {
   border: 1px dashed #000;
 }
+
+.admin-buttons {
+  margin-top: 1rem;
+}
+
+.message {
+  text-align: center;
+  margin-top: 10rem;
+  color: green;
+}
+
+.error {
+  text-align: center;
+  margin-top: 10rem;
+  color: red;
+}

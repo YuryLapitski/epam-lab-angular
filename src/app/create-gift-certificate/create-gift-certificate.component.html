@@ -1,61 +1,69 @@
-<div *ngIf="isCreated; else createGiftCertificateForm">
-  The gift certificate has been created successfully.
+<div *ngIf="role === 'ADMIN'; else denied">
+  <div *ngIf="isCreated; else createGiftCertificateForm">
+    The gift certificate has been created successfully.
+  </div>
+
+  <ng-template #createGiftCertificateForm>
+    <div class="row col-sm-6" style="max-width:350px;">
+
+      <div class="form-group">
+        <ul>
+          <li *ngFor="let tagToCreate of tagList">{{tagToCreate.name}}</li>
+        </ul>
+        <label>
+          <input type="text" name="tagList" [(ngModel)]="tagName"/>
+        </label>
+        <button class="btn btn-secondary" (click) = addTag()>Add tag</button>
+      </div>
+
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label>Gift certificate name
+            <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required/>
+          </label>
+          <div *ngIf="f.submitted && name.invalid">
+            <div *ngIf="name.errors">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description
+            <input type="text" class="form-control" name="description" [(ngModel)]="form.description" #description="ngModel"
+                   required />
+          </label>
+          <div *ngIf="f.submitted && description.invalid">
+            <div *ngIf="description.errors">Description is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Duration
+            <input type="number" class="form-control" name="duration" [(ngModel)]="form.duration" #duration="ngModel" required />
+          </label>
+          <div *ngIf="f.submitted && duration.invalid">
+            <div *ngIf="duration.errors">Duration is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Price
+            <input type="number" class="form-control" name="price" [(ngModel)]="form.price" #price="ngModel"/>
+          </label>
+          <div *ngIf="f.submitted && price.invalid">
+            <div *ngIf="price.errors">Price is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary">Create</button>
+          <div *ngIf="f.submitted && isCreateFailed" class="alert alert-warning">
+            Create failed!<br/>{{errorMessage}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
 </div>
 
-<ng-template #createGiftCertificateForm>
-  <div class="row col-sm-6" style="max-width:350px;">
-
-    <div class="form-group">
-      <ul>
-        <li *ngFor="let tagToCreate of tagList">{{tagToCreate.name}}</li>
-      </ul>
-      <label>
-        <input type="text" name="tagList" [(ngModel)]="tagName"/>
-      </label>
-      <button class="btn btn-secondary" (click) = addTag()>Add tag</button>
-    </div>
-
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label>Gift certificate name
-          <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required/>
-        </label>
-        <div *ngIf="f.submitted && name.invalid">
-          <div *ngIf="name.errors">Name is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Description
-          <input type="text" class="form-control" name="description" [(ngModel)]="form.description" #description="ngModel"
-                 required />
-        </label>
-        <div *ngIf="f.submitted && description.invalid">
-          <div *ngIf="description.errors">Description is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Duration
-          <input type="number" class="form-control" name="duration" [(ngModel)]="form.duration" #duration="ngModel" required />
-        </label>
-        <div *ngIf="f.submitted && duration.invalid">
-          <div *ngIf="duration.errors">Duration is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Price
-          <input type="number" class="form-control" name="price" [(ngModel)]="form.price" #price="ngModel"/>
-        </label>
-        <div *ngIf="f.submitted && price.invalid">
-          <div *ngIf="price.errors">Price is required</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <button class="btn btn-primary">Create</button>
-        <div *ngIf="f.submitted && isCreateFailed" class="alert alert-warning">
-          Create failed!<br/>{{errorMessage}}
-        </div>
-      </div>
-    </form>
-  </div>
+<ng-template #denied>
+  <h2 class="error">Access denied!</h2>
 </ng-template>
+
+

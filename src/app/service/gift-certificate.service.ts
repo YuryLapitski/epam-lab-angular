@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {GiftCertificateToCreate} from "../entity/giftCertificateToCreate";
 
 const CREATE_GIFT_CERTIFICATE_URL = 'http://localhost:8082/v1/gift-certificates';
+const DELETE_GIFT_CERTIFICATE_URL = 'http://localhost:8082/v1/gift-certificates';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,13 @@ export class GiftCertificateService {
 
   createGiftCertificate(info: GiftCertificateToCreate): Observable<string> {
     return this.httpClient.post<string>(CREATE_GIFT_CERTIFICATE_URL, info);
+  }
+
+  deleteGiftCertificate(id: string) {
+    return this.httpClient.delete(this.createGiftCertificateURL(id));
+  }
+
+  updateGiftCertificate(id: string, info: GiftCertificateToCreate) {
+    return this.httpClient.put(this.createGiftCertificateURL(id), info);
   }
 }

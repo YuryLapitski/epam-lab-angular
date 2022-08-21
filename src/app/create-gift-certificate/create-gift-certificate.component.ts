@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GiftCertificateService} from "../service/gift-certificate.service";
 import {GiftCertificateToCreate} from "../entity/giftCertificateToCreate";
 import {TagToCreate} from "../entity/tagToCreate";
+import {TokenStorageService} from "../auth/token-storage.service";
 
 @Component({
   selector: 'app-create-gift-certificate',
@@ -16,12 +17,14 @@ export class CreateGiftCertificateComponent implements OnInit {
   isCreateFailed: boolean;
   errorMessage: string;
   tagName: string;
+  role: string;
 
-  constructor(private giftCertificateService: GiftCertificateService) {
+  constructor(private giftCertificateService: GiftCertificateService, private tokenService: TokenStorageService) {
   }
 
   ngOnInit(): void {
     this.form = {};
+    this.role = this.tokenService.getRole();
   }
 
   onSubmit() {
