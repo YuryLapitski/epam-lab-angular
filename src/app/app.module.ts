@@ -20,6 +20,7 @@ import {UserService} from "./service/user.service";
 import { OrdersComponent } from './orders/orders.component';
 import { CreateGiftCertificateComponent } from './create-gift-certificate/create-gift-certificate.component';
 import { UpdateGiftCertificateComponent } from './update-gift-certificate/update-gift-certificate.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UpdateGiftCertificateComponent } from './update-gift-certificate/update
     OrdersComponent,
     CreateGiftCertificateComponent,
     UpdateGiftCertificateComponent,
+    ManageUsersComponent,
   ],
   imports: [
     AppRoutingModule,

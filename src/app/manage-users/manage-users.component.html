@@ -1,0 +1,22 @@
+<div *ngIf="role === 'ADMIN'; else denied">
+  <table class="table">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Login</th>
+      <th scope="col">Role</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.login}}</td>
+      <td>{{user.role}}</td>
+    </tr>
+  </table>
+</div>
+
+<ng-template #denied>
+  <h2 class="error">Access denied!</h2>
+</ng-template>

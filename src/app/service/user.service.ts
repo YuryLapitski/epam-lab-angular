@@ -14,7 +14,15 @@ export class UserService {
     return this.httpClient.get<User>(this.createFindUserByLoginUrl(login));
   }
 
+  getAllUsers(page: string, size: string) {
+    return this.httpClient.get<Array<User>>(this.createUrlWithPagination(page, size));
+  }
+
   createFindUserByLoginUrl(login: string): string {
     return `http://localhost:8082/v1/users/login/?login=${login}`;
+  }
+
+  createUrlWithPagination(page: string, size: string): string {
+    return `http://localhost:8082/v1/users/?page=${page}&size=${size}`;
   }
 }
