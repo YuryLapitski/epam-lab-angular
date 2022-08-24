@@ -45,7 +45,7 @@ export class CertificateComponent implements OnInit {
 
   addToCart(giftCertificate: GiftCertificate) {
     window.alert('Your product has been added to the cart!');
-    this.cartService.addToCart(giftCertificate);
+    this.cartService.saveGiftCertificateId(giftCertificate);
   }
 
   deleteGiftCertificate(giftCertificate: GiftCertificate) {

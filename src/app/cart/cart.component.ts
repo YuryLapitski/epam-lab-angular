@@ -5,6 +5,7 @@ import {OrderPost} from "../entity/orderPost";
 import {UserService} from "../service/user.service";
 import {User} from "../entity/user";
 import {OrderService} from "../service/order.service";
+import {GiftCertificateService} from "../service/gift-certificate.service";
 
 const USERNAME_KEY = 'Username';
 
@@ -15,21 +16,35 @@ const USERNAME_KEY = 'Username';
 })
 export class CartComponent implements OnInit {
 
-  giftCertificates: GiftCertificate[];
+  giftCertificates: GiftCertificate[] = [];
+  giftCertificate: GiftCertificate = new GiftCertificate();
+  giftCertificatesId: bigint[];
   orderInfo: OrderPost = new OrderPost();
   user: User = new User();
   isCreated = false;
   isCreateFailed = false;
   errorMessage = '';
 
-  constructor(private cartService: CartService, private userService: UserService, private orderService: OrderService) {
-    this.giftCertificates = this.cartService.getGiftCertificates();
+  constructor(private cartService: CartService,
+              private userService: UserService,
+              private orderService: OrderService,
+              private giftCertificateService: GiftCertificateService) {
   }
 
   ngOnInit(): void {
     let login = sessionStorage.getItem(USERNAME_KEY);
     if (login !== null) {
       this.userService.getUserByLogin(login).subscribe(result => this.user = result);
+    }
+    this.giftCertificatesId = JSON.parse(this.cartService.getGiftCertificateId());
+    if (this.giftCertificatesId !== null) {
+      this.giftCertificatesId.forEach((id: bigint) => {
+        this.giftCertificateService.getGiftCertificate(id.toString())
+          .subscribe(result => {
+            this.giftCertificate = result;
+            this.giftCertificates.push(result);
+          })
+      })
     }
   }
 
@@ -50,7 +65,7 @@ export class CartComponent implements OnInit {
           })
     });
 
-    this.giftCertificates = this.cartService.clearCart();
+    this.cartService.clearCart();
   }
 
   clearCart(): void {
