@@ -21,6 +21,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { CreateGiftCertificateComponent } from './create-gift-certificate/create-gift-certificate.component';
 import { UpdateGiftCertificateComponent } from './update-gift-certificate/update-gift-certificate.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     CreateGiftCertificateComponent,
     UpdateGiftCertificateComponent,
     ManageUsersComponent,
+    ManageOrdersComponent,
   ],
   imports: [
     AppRoutingModule,

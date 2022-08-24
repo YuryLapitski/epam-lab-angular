@@ -1,18 +1,29 @@
-<div>
+<div *ngIf="role === 'ADMIN'; else denied">
   <table class="table">
     <tr>
+      <th scope="col">User ID</th>
       <th scope="col">Gift certificate name</th>
       <th scope="col">Description</th>
       <th scope="col">Duration</th>
       <th scope="col">Price</th>
       <th scope="col">Create date</th>
+      <th scope="col"></th>
     </tr>
     <tr *ngFor="let order of orders">
+      <td>{{order.user.id}}</td>
       <td>{{order.giftCertificate.name}}</td>
       <td>{{order.giftCertificate.description}}</td>
       <td>{{order.giftCertificate.duration}} days</td>
       <td>{{order.giftCertificate.price}} $</td>
       <td>{{order.createDate}}</td>
+      <td *ngIf="role === 'ADMIN'">
+        <button class="btn btn-secondary" (click)="deleteOrder(order)"
+                style="margin-left: 1.5rem">Delete</button>
+      </td>
     </tr>
   </table>
 </div>
+
+<ng-template #denied>
+  <h2 class="error">Access denied!</h2>
+</ng-template>

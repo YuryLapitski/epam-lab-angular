@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Order} from "../entity/order";
+import {User} from "../entity/user";
 import {OrderService} from "../service/order.service";
 import {UserService} from "../service/user.service";
-import {User} from "../entity/user";
 import {TokenStorageService} from "../auth/token-storage.service";
 
 const FIRST_PAGE = '1';
@@ -11,16 +11,19 @@ const USERNAME_KEY = 'Username';
 const EMPTY_STRING = '';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  selector: 'app-manage-orders',
+  templateUrl: './manage-orders.component.html',
+  styleUrls: ['./manage-orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class ManageOrdersComponent implements OnInit {
   orders: Order[] = [];
   page: string = FIRST_PAGE;
   size: string = MAX_SIZE;
   user: User = new User();
   userId: string = '';
+  isDelete: boolean;
+  isDeleteFailed: boolean;
+  errorMessage: string;
   role: string = EMPTY_STRING;
 
   constructor(private orderService: OrderService,
@@ -34,9 +37,25 @@ export class OrdersComponent implements OnInit {
       this.userService.getUserByLogin(login).subscribe(result => {
         this.user = result;
         this.userId = String(this.user.id);
-        this.orderService.getOrdersByUserId(String(this.user.id), this.page, this.size)
+        this.orderService.getOrders(this.page, this.size)
           .subscribe(result => this.orders = result);
       });
     }
+  }
+
+  deleteOrder(order: Order) {
+    this.orderService.deleteOrder(order.id.toString()).subscribe(
+      () => {
+        this.isDelete = true;
+        console.log('The order has been deleted');
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.errorMessage;
+        this.isDelete = false;
+        this.isDeleteFailed = true;
+      }
+    );
+    window.location.reload();
   }
 }

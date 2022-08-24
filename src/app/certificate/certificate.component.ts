@@ -9,7 +9,7 @@ import {ImageService} from "../service/image.service";
 import {ImageRelation} from "../entity/imageRelation";
 
 const DEFAULT_IMAGE_URL = 'assets/images/noImage.jpg';
-const EMPTY_STRING = ''
+const EMPTY_STRING = '';
 
 @Component({
   selector: 'app-certificate',

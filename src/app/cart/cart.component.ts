@@ -17,7 +17,6 @@ const USERNAME_KEY = 'Username';
 export class CartComponent implements OnInit {
 
   giftCertificates: GiftCertificate[] = [];
-  giftCertificate: GiftCertificate = new GiftCertificate();
   giftCertificatesId: bigint[];
   orderInfo: OrderPost = new OrderPost();
   user: User = new User();
@@ -41,7 +40,6 @@ export class CartComponent implements OnInit {
       this.giftCertificatesId.forEach((id: bigint) => {
         this.giftCertificateService.getGiftCertificate(id.toString())
           .subscribe(result => {
-            this.giftCertificate = result;
             this.giftCertificates.push(result);
           })
       })

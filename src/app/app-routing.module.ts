@@ -11,6 +11,7 @@ import {OrdersComponent} from "./orders/orders.component";
 import {CreateGiftCertificateComponent} from "./create-gift-certificate/create-gift-certificate.component";
 import {UpdateGiftCertificateComponent} from "./update-gift-certificate/update-gift-certificate.component";
 import {ManageUsersComponent} from "./manage-users/manage-users.component";
+import {ManageOrdersComponent} from "./manage-orders/manage-orders.component";
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'manage-users',
     component: ManageUsersComponent
+  },
+  {
+    path: 'manage-orders',
+    component: ManageOrdersComponent
   },
   {
     path: '',

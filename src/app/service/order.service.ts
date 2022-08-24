@@ -35,4 +35,12 @@ export class OrderService {
   createUrlGetOrders(page: string, size: string) {
     return `http://localhost:8082/v1/orders/?page=${page}&size=${size}`
   }
+
+  deleteOrder(id: string) {
+    return this.httpClient.delete(this.createOrderURL(id));
+  }
+
+  createOrderURL(id: string): string {
+    return `http://localhost:8082/v1/orders/${id}`;
+  }
 }
