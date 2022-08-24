@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.giftCertificateService.getGiftCertificates(this.page, this.size)
       .subscribe(result => this.giftCertificates = result);
-    this.imageService.getImage().subscribe(result => this.imgRelations = result)
+    this.imageService.getImage().subscribe(result => this.imgRelations = result);
   }
 
   getImageUrl(name: string): string {

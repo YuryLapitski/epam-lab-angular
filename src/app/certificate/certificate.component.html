@@ -1,6 +1,7 @@
 <div *ngIf="!isDelete; else deleteCertificate">
   <div>
-    <img class="img-responsive" [src]="imgUrl" alt="lorem">
+<!--    <img class="img-responsive" [src]="imgUrl" alt="lorem">-->
+    <img class="card-img-top" [src]="getImageUrl(giftCertificate.name)" alt="lorem" style="width: 300px; height: 180px">
     <br>
   </div>
   <p>

@@ -5,6 +5,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 import {CartService} from "../service/cart.service";
 import {TokenStorageService} from "../auth/token-storage.service";
+import {ImageService} from "../service/image.service";
+import {ImageRelation} from "../entity/imageRelation";
 
 const DEFAULT_IMAGE_URL = 'assets/images/noImage.jpg';
 const EMPTY_STRING = ''
@@ -18,24 +20,26 @@ export class CertificateComponent implements OnInit {
 
   giftCertificate: GiftCertificate = new GiftCertificate();
   giftCertificateId: string = EMPTY_STRING;
-  imgUrl: string = DEFAULT_IMAGE_URL;
   role: string = EMPTY_STRING;
   errorMessage: string;
   isDelete: boolean;
   isDeleteFailed: boolean;
+  imgRelations: ImageRelation[] = [];
 
   private routeSubscription!: Subscription;
 
   constructor(private route: ActivatedRoute,
               private giftCertificateService: GiftCertificateService,
               private cartService: CartService,
-              private tokenService: TokenStorageService) { }
+              private tokenService: TokenStorageService,
+              private imageService: ImageService) { }
 
   ngOnInit() {
     this.routeSubscription = this.route.params.subscribe(params => this.giftCertificateId = params['giftCertificateId']);
     this.giftCertificateService.getGiftCertificate(this.giftCertificateId)
         .subscribe(result => this.giftCertificate = result);
     this.role = this.tokenService.getRole();
+    this.imageService.getImage().subscribe(result => this.imgRelations = result);
     console.log(this.role);
   }
 
@@ -57,5 +61,18 @@ export class CertificateComponent implements OnInit {
         this.isDeleteFailed = true;
       }
     );
+  }
+
+  getImageUrl(name: string): string {
+    let imgUrl = '';
+    this.imgRelations.map(function(imageRelation) {
+      if (imageRelation.gcName === name) {
+        imgUrl = imageRelation.path;
+      }
+    });
+    if (imgUrl === '') {
+      imgUrl = DEFAULT_IMAGE_URL;
+    }
+    return imgUrl;
   }
 }

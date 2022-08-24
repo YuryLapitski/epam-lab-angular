@@ -1,9 +1,10 @@
 <!--<h3 class="text-primary">Hello, {{info.username}}</h3>-->
 <h1 style="text-align: center">GIFT CERTIFICATE SYSTEM</h1>
 <div class="card-columns" style="display: inline-block;">
-  <div class="card" style="width: 17rem; height: 25rem;" *ngFor="let giftCertificate of giftCertificates">
+  <div class="card" style="width: 16rem; height: 19rem;" *ngFor="let giftCertificate of giftCertificates">
     <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
-         routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
+         routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem"
+         style="width: 250px; height: 150px">
     <div class="card-body">
       <a class="card-link" [title]="giftCertificate.name + ' details'"
          [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">
@@ -11,8 +12,8 @@
       </a><br/>
       <strong>Price: </strong>{{giftCertificate.price}} $<br/>
       <strong>Tags: </strong>
-      <div class="middle-content" *ngFor="let tag of giftCertificate.tagList">
-        <a class="card-link" [title]="'Gift certificates with tag #' + tag.name">#{{tag.name}}</a>
+      <div class="middle-content" *ngFor="let tag of giftCertificate.tagList" style="display: inline">
+        <a class="card-link" [title]="'Gift certificates with tag #' + tag.name">#{{tag.name}} </a>
       </div><br>
 
     </div>
