@@ -1,4 +1,3 @@
-<h1 style="text-align: center">GIFT CERTIFICATE SYSTEM</h1>
 <div class="card-columns" style="display: inline-block;">
   <div class="card" style="width: 16rem; height: 19rem;" *ngFor="let giftCertificate of giftCertificates">
     <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
@@ -14,11 +13,8 @@
       <div class="middle-content" *ngFor="let tag of giftCertificate.tagList" style="display: inline">
         <a class="card-link" [title]="'Gift certificates with tag #' + tag.name"
            [routerLink]="'../gift-certificates-by-tag/'"
-           [queryParams]="{'tagName':tag.name}">#{{tag.name}} </a>
+           [queryParams]="{'tagName':tag.name}" (click)="reloadPage(tag.name)">#{{tag.name}} </a>
       </div>
     </div>
   </div>
 </div>
-
-
-

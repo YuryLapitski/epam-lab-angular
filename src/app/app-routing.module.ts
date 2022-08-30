@@ -12,6 +12,7 @@ import {CreateGiftCertificateComponent} from "./create-gift-certificate/create-g
 import {UpdateGiftCertificateComponent} from "./update-gift-certificate/update-gift-certificate.component";
 import {ManageUsersComponent} from "./manage-users/manage-users.component";
 import {ManageOrdersComponent} from "./manage-orders/manage-orders.component";
+import {GiftCertificatesByTagComponent} from "./gift-certificates-by-tag/gift-certificates-by-tag.component";
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'manage-orders',
     component: ManageOrdersComponent
+  },
+  {
+    path: 'gift-certificates-by-tag',
+    component: GiftCertificatesByTagComponent
   },
   {
     path: '',
