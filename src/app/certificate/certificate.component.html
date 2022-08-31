@@ -1,7 +1,6 @@
 <div *ngIf="!isDelete; else deleteCertificate">
   <div>
-<!--    <img class="img-responsive" [src]="imgUrl" alt="lorem">-->
-    <img class="card-img-top" [src]="getImageUrl(giftCertificate.name)" alt="lorem" style="width: 300px; height: 180px">
+    <img class="card-img-top" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
     <br>
   </div>
   <p>
@@ -14,7 +13,9 @@
     <strong>LastUpdateDate: </strong>{{giftCertificate.lastUpdateDate}} <br/><br/>
     <strong>Tags: </strong>
   <div *ngFor="let tag of giftCertificate.tagList">
-    <a>#{{tag.name}}</a>
+    <a class="card-link" [title]="'Gift certificates with tag #' + tag.name"
+       [routerLink]="'../../gift-certificates-by-tag/'"
+       [queryParams]="{'tagName':tag.name}">#{{tag.name}}</a>
   </div><br>
   <a *ngIf="role == 'UNAUTHORIZED'; else authorized" routerLink="../../login">
     Please log in to add to shopping cart

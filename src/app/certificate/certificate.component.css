@@ -17,3 +17,8 @@
   margin-top: 10rem;
   color: red;
 }
+
+.card-img-top {
+  width: 330px;
+  height: 198px;
+}

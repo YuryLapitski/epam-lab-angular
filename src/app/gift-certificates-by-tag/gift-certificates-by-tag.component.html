@@ -1,10 +1,10 @@
-<div class="card-columns" style="display: inline-block;">
-  <div class="card" style="width: 16rem; height: 19rem;" *ngFor="let giftCertificate of giftCertificates">
+<div class="card-deck">
+  <div class="card" *ngFor="let giftCertificate of giftCertificates">
     <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
          routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem"
          style="width: 250px; height: 150px">
     <div class="card-body">
-      <a class="card-link" [title]="giftCertificate.name + ' details'"
+      <a class="card-title-link" [title]="giftCertificate.name + ' details'"
          [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">
         {{giftCertificate.name}}
       </a><br/>
