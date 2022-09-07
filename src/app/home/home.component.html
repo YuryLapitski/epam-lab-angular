@@ -1,22 +1,46 @@
 <h1 class="title">GIFT CERTIFICATE SYSTEM</h1>
 <div class="card-deck">
-  <div class="card" *ngFor="let giftCertificate of giftCertificates">
-    <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
-         routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
-    <div class="card-body">
-      <a class="card-title-link" [title]="giftCertificate.name + ' details'"
-         [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">
-        {{giftCertificate.name}}
-      </a><br>
-      <strong>Price: {{giftCertificate.price}} $</strong><br>
-      <strong>Tags: </strong>
-      <div class="middle-content" *ngFor="let tag of giftCertificate.tagList" style="display: inline">
-        <a class="card-link" [title]="'Gift certificates with tag #' + tag.name"
-           [routerLink]="'../gift-certificates-by-tag/'"
-           [queryParams]="{'tagName':tag.name}">#{{tag.name}} </a>
+  <div class="card" *ngFor="let giftCertificate of giftCertificates; let i = index">
+
+    <div *ngIf="i + 1 !== giftCertificates.length">
+      <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
+           routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
+      <div class="card-body">
+        <a class="card-title-link" [title]="giftCertificate.name + ' details'"
+           [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">
+          {{giftCertificate.name}}
+        </a><br>
+        <strong>Price: {{giftCertificate.price}} $</strong><br>
+        <strong>Tags: </strong>
+        <div class="middle-content" *ngFor="let tag of giftCertificate.tagList" style="display: inline">
+          <a class="card-link" [title]="'Gift certificates with tag #' + tag.name"
+             [routerLink]="'../gift-certificates-by-tag/'"
+             [queryParams]="{'tagName':tag.name}">#{{tag.name}} </a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="i + 1 === giftCertificates.length" #theLastList>
+      <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
+           routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
+      <div class="card-body">
+        <a class="card-title-link" [title]="giftCertificate.name + ' details'"
+           [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">
+          {{giftCertificate.name}}
+        </a><br>
+        <strong>Price: {{giftCertificate.price}} $</strong><br>
+        <strong>Tags: </strong>
+        <div class="middle-content" *ngFor="let tag of giftCertificate.tagList" style="display: inline">
+          <a class="card-link" [title]="'Gift certificates with tag #' + tag.name"
+             [routerLink]="'../gift-certificates-by-tag/'"
+             [queryParams]="{'tagName':tag.name}">#{{tag.name}} </a>
+        </div>
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="isLastPage" class="alert alert-info">
+  <p>That's all</p>
 </div>
 
 
