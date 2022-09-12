@@ -11,23 +11,13 @@
       <ng-template #loggedIn>
         <ul class="navbar-nav mr-auto" routerLinkActive="active">
           <li class="nav-item active"><a class="nav-link" href="#" (click)="logout()">Logout</a></li>
-          <li class="nav-item active">
+          <li class="nav-item active" style="margin-left: 23rem">
             <span class="nav-link">You are logged in like {{user.firstName}} {{user.lastName}}</span>
           </li>
         </ul>
       </ng-template>
     </ul>
-    <div class="dropdown" *ngIf="info.role === 'ADMIN'">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"> Admin panel
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="create-gift-certificate">Create new gift certificate</a>
-        <a class="dropdown-item" href="manage-users">View users</a>
-        <a class="dropdown-item" href="manage-orders">Manage orders</a>
-      </div>
-    </div>
-    <div class="navbar-nav mr-auto" routerLinkActive="active" style="margin-left: 2rem">
+    <div class="navbar-nav mr-auto" routerLinkActive="active" style="margin-left: 10rem">
       <p class="nav-item active" *ngIf="info.role === 'UNAUTHORIZED'; else authorized"></p>
       <ng-template #authorized>
         <button class="btn btn-secondary" type="button"><i [routerLink]="['/cart']">
@@ -39,16 +29,31 @@
             0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
           </svg> Checkout cart</i>
         </button>
-        <li class="nav-item active"><a class="nav-link" [routerLink]="['/orders']">My Orders</a></li>
       </ng-template>
     </div>
-    <i class="icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-           class="bi bi-list" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5
+    <div class="dropdown" *ngIf="info.role === 'ADMIN'">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"> Admin panel
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="create-gift-certificate">Create new gift certificate</a>
+        <a class="dropdown-item" href="manage-users">View users</a>
+        <a class="dropdown-item" href="manage-orders">Manage orders</a>
+      </div>
+    </div>
+    <div class="dropdown" *ngIf="info.role === 'ADMIN' || 'USER'">
+      <i class="icon" id="dropdownMenuIcon" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white"
+             class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5
         0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-      </svg>
-    </i>
+        </svg>
+      </i>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="left: -6rem; min-width: 5rem">
+        <a class="dropdown-item" [routerLink]="['/orders']">My Orders</a>
+      </div>
+    </div>
   </div>
 </nav>
 <div class="container">
