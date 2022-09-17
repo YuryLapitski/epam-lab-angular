@@ -45,6 +45,7 @@ export class UpdateGiftCertificateComponent implements OnInit {
       this.form.description,
       this.form.duration,
       this.form.price,
+      this.form.image,
       this.tagList);
 
     this.giftCertificateService.updateGiftCertificate(this.giftCertificateId, this.giftCertificateToCreate).subscribe(

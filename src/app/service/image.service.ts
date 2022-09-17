@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ImageRelation} from "../entity/imageRelation";
 
+const IMAGE_RELATION_URL = 'assets/image-relation.json'
+
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   getImage() {
-    return this.http.get<ImageRelation[]>('assets/image-relation.json');
+    return this.httpClient.get<ImageRelation[]>(IMAGE_RELATION_URL);
   }
 }

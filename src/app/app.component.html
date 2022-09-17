@@ -17,6 +17,16 @@
         </ul>
       </ng-template>
     </ul>
+    <div class="dropdown" *ngIf="info.role === 'ADMIN'">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"> Admin panel
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="create-gift-certificate">Create new gift certificate</a>
+        <a class="dropdown-item" href="manage-users">View users</a>
+        <a class="dropdown-item" href="manage-orders">Manage orders</a>
+      </div>
+    </div>
     <div class="navbar-nav mr-auto" routerLinkActive="active" style="margin-left: 10rem">
       <p class="nav-item active" *ngIf="info.role === 'UNAUTHORIZED'; else authorized"></p>
       <ng-template #authorized>
@@ -30,16 +40,6 @@
           </svg> Checkout cart</i>
         </button>
       </ng-template>
-    </div>
-    <div class="dropdown" *ngIf="info.role === 'ADMIN'">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"> Admin panel
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="create-gift-certificate">Create new gift certificate</a>
-        <a class="dropdown-item" href="manage-users">View users</a>
-        <a class="dropdown-item" href="manage-orders">Manage orders</a>
-      </div>
     </div>
     <div class="dropdown" *ngIf="info.role === 'ADMIN' || 'USER'">
       <i class="icon" id="dropdownMenuIcon" data-toggle="dropdown"

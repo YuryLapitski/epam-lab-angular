@@ -15,11 +15,9 @@ import {ImageRelation} from "../entity/imageRelation";
 import { NgxSpinnerService } from 'ngx-spinner';
 
 const FIRST_PAGE = 1;
-const DEFAULT_IMAGE_URL = 'assets/images/noImage.jpg';
 const ZERO_LENGTH = 0;
 const PAGE_SIZE = 8;
 const INVALID_PAGE_NUMBER_ERROR_CODE = 40005;
-const EMPTY_STRING = '';
 const QUERY_SELECTOR_ARG = '#scrollArea';
 const ROOT_MARGIN_VALUE = '0px'
 const THRESHOLD_VALUE = 1;
@@ -38,6 +36,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   currentPage = FIRST_PAGE;
   isLastPage: boolean = false;
   errorCode: number;
+  image: string;
 
   @Output() scrolled = new EventEmitter<void>();
 
@@ -82,19 +81,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
           }
         });
     this.imageService.getImage().subscribe(result => this.imgRelations = result);
-  }
-
-  getImageUrl(name: string): string {
-    let imgUrl = EMPTY_STRING;
-    this.imgRelations.map(function(imageRelation) {
-      if (imageRelation.gcName === name) {
-        imgUrl = imageRelation.path;
-      }
-    });
-    if (imgUrl === EMPTY_STRING) {
-      imgUrl = DEFAULT_IMAGE_URL;
-    }
-    return imgUrl;
   }
 
   intersectionObserver() {

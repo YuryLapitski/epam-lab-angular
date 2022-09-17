@@ -3,8 +3,16 @@
   <div class="card" *ngFor="let giftCertificate of giftCertificates; let i = index">
 
     <div *ngIf="i + 1 !== giftCertificates.length">
-      <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
-           routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
+      <div *ngIf="giftCertificate.image !== null; else noImage">
+        <img  class="card-img-top"
+              [routerLink]="['../gift-certificates/', giftCertificate.id]"
+              routerLinkActive="active" [src]="giftCertificate.image" alt="lorem">
+      </div>
+      <ng-template #noImage>
+        <img class="card-img-top"
+             [routerLink]="['../gift-certificates/', giftCertificate.id]"
+             routerLinkActive="active" [src]="'../assets/images/noImage.jpg'" alt="lorem">
+      </ng-template>
       <div class="card-body">
         <a class="card-title-link" [title]="giftCertificate.name + ' details'"
            [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">
@@ -21,8 +29,16 @@
     </div>
 
     <div *ngIf="i + 1 === giftCertificates.length" #theLastList>
-      <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
-           routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
+      <div *ngIf="giftCertificate.image !== null; else noImage">
+        <img  class="card-img-top"
+              [routerLink]="['../gift-certificates/', giftCertificate.id]"
+              routerLinkActive="active" [src]="giftCertificate.image" alt="lorem">
+      </div>
+      <ng-template #noImage>
+        <img class="card-img-top"
+             [routerLink]="['../gift-certificates/', giftCertificate.id]"
+             routerLinkActive="active" [src]="'../assets/images/noImage.jpg'" alt="lorem">
+      </ng-template>
       <div class="card-body">
         <a class="card-title-link" [title]="giftCertificate.name + ' details'"
            [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">

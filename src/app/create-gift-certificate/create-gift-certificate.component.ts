@@ -3,6 +3,7 @@ import {GiftCertificateService} from "../service/gift-certificate.service";
 import {GiftCertificateToCreate} from "../entity/giftCertificateToCreate";
 import {TagToCreate} from "../entity/tagToCreate";
 import {TokenStorageService} from "../auth/token-storage.service";
+import {Observable, ReplaySubject} from "rxjs";
 
 @Component({
   selector: 'app-create-gift-certificate',
@@ -18,13 +19,30 @@ export class CreateGiftCertificateComponent implements OnInit {
   errorMessage: string;
   tagName: string;
   role: string;
+  image: string;
 
-  constructor(private giftCertificateService: GiftCertificateService, private tokenService: TokenStorageService) {
+  constructor(private giftCertificateService: GiftCertificateService,
+              private tokenService: TokenStorageService) {
   }
 
   ngOnInit(): void {
     this.form = {};
     this.role = this.tokenService.getRole();
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    this.convertFile(event.target.files[0]).subscribe(base64 => {
+      this.image = 'data:image/jpeg;base64,' + base64;
+    });
+  }
+
+  convertFile(file: File): Observable<string> {
+    const result = new ReplaySubject<string>(1);
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (event) => result.next(btoa(event.target.result.toString()));
+    return result;
   }
 
   onSubmit() {
@@ -33,7 +51,9 @@ export class CreateGiftCertificateComponent implements OnInit {
       this.form.description,
       this.form.duration,
       this.form.price,
-      this.tagList);
+      this.image,
+      this.tagList
+    );
 
     this.giftCertificateService.createGiftCertificate(this.giftCertificate).subscribe(
       () => {

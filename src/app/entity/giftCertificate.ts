@@ -8,5 +8,6 @@ export class GiftCertificate {
   duration!: number;
   createDate!: string;
   lastUpdateDate!: string;
+  image!: string;
   tagList!: Tag[];
 }
