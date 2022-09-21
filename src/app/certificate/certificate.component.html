@@ -25,7 +25,8 @@
   <ng-template #authorized>
     <button class="btn btn-secondary" (click)="addToCart(giftCertificate)">Add to shopping cart</button>
     <div class="admin-buttons" *ngIf="role == 'ADMIN'">
-      <a [routerLink]="['../../update-gift-certificate', giftCertificate.id]" routerLinkActive="active" class="btn btn-secondary">Update</a>
+      <a [routerLink]="['../../update-gift-certificate', giftCertificate.id]" routerLinkActive="active"
+         class="btn btn-secondary">Update</a>
       <button class="btn btn-secondary" (click)="deleteGiftCertificate(giftCertificate)"
               style="margin-left: 1.5rem">Delete</button>
     </div>

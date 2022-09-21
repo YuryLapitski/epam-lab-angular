@@ -41,6 +41,12 @@
         </div>
 
         <div class="form-group">
+          <label>Image
+            <input type="file" class="form-control" name="image" (change)="onFileSelected($event)"/>
+          </label>
+        </div>
+
+        <div class="form-group">
           <button class="btn btn-primary">Update</button>
           <div *ngIf="f.submitted && isUpdateFailed" class="alert alert-warning">
             Update failed!<br/>{{errorMessage}}

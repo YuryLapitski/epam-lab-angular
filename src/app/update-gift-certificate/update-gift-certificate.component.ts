@@ -6,6 +6,7 @@ import {TokenStorageService} from "../auth/token-storage.service";
 import {GiftCertificate} from "../entity/giftCertificate";
 import {GiftCertificateToCreate} from "../entity/giftCertificateToCreate";
 import {TagToCreate} from "../entity/tagToCreate";
+import {Observable, ReplaySubject} from "rxjs";
 
 @Component({
   selector: 'app-update-gift-certificate',
@@ -23,6 +24,7 @@ export class UpdateGiftCertificateComponent implements OnInit {
   errorMessage: string;
   tagList: TagToCreate[] = [];
   tagName: string;
+  image: string;
 
   private routeSubscription!: Subscription;
 
@@ -45,7 +47,7 @@ export class UpdateGiftCertificateComponent implements OnInit {
       this.form.description,
       this.form.duration,
       this.form.price,
-      this.form.image,
+      this.image,
       this.tagList);
 
     this.giftCertificateService.updateGiftCertificate(this.giftCertificateId, this.giftCertificateToCreate).subscribe(
@@ -59,6 +61,21 @@ export class UpdateGiftCertificateComponent implements OnInit {
         this.isUpdateFailed = true;
       }
     );
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    this.convertFile(event.target.files[0]).subscribe(base64 => {
+      this.image = 'data:image/jpeg;base64,' + base64;
+    });
+  }
+
+  convertFile(file: File): Observable<string> {
+    const result = new ReplaySubject<string>(1);
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (event) => result.next(btoa(event.target.result.toString()));
+    return result;
   }
 
   addTag(): TagToCreate {
