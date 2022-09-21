@@ -10,8 +10,6 @@ import {
 } from '@angular/core';
 import {GiftCertificate} from "../entity/giftCertificate";
 import {GiftCertificateService} from "../service/gift-certificate.service";
-import {ImageService} from "../service/image.service";
-import {ImageRelation} from "../entity/imageRelation";
 import { NgxSpinnerService } from 'ngx-spinner';
 
 const FIRST_PAGE = 1;
@@ -31,7 +29,6 @@ const ENTRIES_INDEX = 0;
 export class HomeComponent implements OnInit, AfterViewInit {
 
   giftCertificates: GiftCertificate[] = [];
-  imgRelations: ImageRelation[] = [];
   observer: any;
   currentPage = FIRST_PAGE;
   isLastPage: boolean = false;
@@ -44,7 +41,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   theLastList: QueryList<ElementRef>;
 
   constructor(private giftCertificateService: GiftCertificateService,
-              private imageService: ImageService,
               private spinner: NgxSpinnerService) {  }
 
   ngOnInit(): void {
@@ -80,7 +76,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
             this.isLastPage = true;
           }
         });
-    this.imageService.getImage().subscribe(result => this.imgRelations = result);
   }
 
   intersectionObserver() {

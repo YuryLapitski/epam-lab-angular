@@ -1,8 +1,10 @@
 <div *ngIf="!isDelete; else deleteCertificate">
-  <div>
-    <img class="card-img-top" [src]="getImageUrl(giftCertificate.name)" alt="lorem">
-    <br>
+  <div *ngIf="giftCertificate.image !== null; else noImage">
+    <img  class="card-img-top" [src]="giftCertificate.image" alt="lorem">
   </div>
+  <ng-template #noImage>
+    <img class="card-img-top" [src]="'../assets/images/noImage.jpg'" alt="lorem">
+  </ng-template>
   <p>
     <strong>ID: </strong>{{giftCertificate.id}} <br/>
     <strong>Name: </strong>{{giftCertificate.name}} <br/>

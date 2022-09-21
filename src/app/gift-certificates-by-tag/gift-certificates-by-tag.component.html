@@ -1,8 +1,16 @@
 <div class="card-deck">
   <div class="card" *ngFor="let giftCertificate of giftCertificates">
-    <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
-         routerLinkActive="active" [src]="getImageUrl(giftCertificate.name)" alt="lorem"
-         style="width: 250px; height: 150px">
+    <div *ngIf="giftCertificate.image !== null; else noImage">
+      <img  class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
+            routerLinkActive="active" [src]="giftCertificate.image" alt="lorem"
+            style="width: 250px; height: 150px">
+    </div>
+    <ng-template #noImage>
+      <img class="card-img-top" [routerLink]="['../gift-certificates/', giftCertificate.id]"
+           routerLinkActive="active" [src]="'../assets/images/noImage.jpg'" alt="lorem"
+           style="width: 250px; height: 150px">
+    </ng-template>
+    <p>
     <div class="card-body">
       <a class="card-title-link" [title]="giftCertificate.name + ' details'"
          [routerLink]="['../gift-certificates/', giftCertificate.id]" routerLinkActive="active">

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {GiftCertificate} from "./entity/giftCertificate";
 import {TokenStorageService} from "./auth/token-storage.service";
 import {UserService} from "./service/user.service";
 import {User} from "./entity/user";
